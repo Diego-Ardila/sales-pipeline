@@ -40,6 +40,11 @@
   font-weight: bold;
 }
 
+.user-cell:hover {
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
 .user-cell .user-img {
   height: 30px;
   width: 30px;

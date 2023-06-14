@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "email": "michaeljohnson@example.com",
+    "nationalId": "4567890123",
+    "birthdate": "1992-07-01"
+  },
+  {
+    "firstName": "Emily",
+    "lastName": "Williams",
+    "email": "emilywilliams@example.com",
+    "nationalId": "9876543210",
+    "birthdate": "1993-02-18"
+  },
+  {
+    "firstName": "William",
+    "lastName": "Harris",
+    "email": "williamharris@example.com",
+    "nationalId": "3579024681",
+    "birthdate": "1993-03-25"
+  },
+  {
+    "firstName": "Harper",
+    "lastName": "Turner",
+    "email": "harperturner@example.com",
+    "nationalId": "2518407936",
+    "birthdate": "1988-03-12"
+  }
+]

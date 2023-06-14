@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import ErrorPage from './components/ErrorPage';
 import Customers from './pages/Customers';
 import Customer from './pages/Customer';
+import { loader as customersLoader } from './components/Table';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "customers",
-        element: <Customers />
+        element: <Customers />,
+        loader: customersLoader
       },
       {
         path: "customer/:customerId",
