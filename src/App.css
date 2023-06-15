@@ -3,6 +3,7 @@
   height: 100vh;
   font-family: sans-serif;
   --primary-color: #3c6af0;
+  --secondary-color: rgb(209, 222, 248);
 }
 
 .App main {
@@ -25,6 +26,6 @@
   color: gray;
 }
 
-h3 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }

@@ -1,0 +1,10 @@
+.customers .customers--subheader {
+  display: flex;
+  margin-top: 10px;
+}
+
+.customers .customers--subheader .metadata {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}

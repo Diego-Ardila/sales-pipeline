@@ -1,3 +1,5 @@
+export type Status = "Sales Qualified Lead" | "Prospect"
+
 export type Customer = {
   id: number;
   firstName: string;
@@ -5,7 +7,7 @@ export type Customer = {
   email: string;
   nationalId: number | string;
   birthdate: string;
-  status: "Sales Qualified Lead" | "Prospect";
+  status: Status;
   image: string
 }
 
@@ -28,3 +30,17 @@ export type ValidationResponse = {
   }
 }
 
+export type OptionElement = {
+  name: string;
+  action: () => void
+}
+
+export type TableProps = {
+  customers: Customer[]
+}
+
+export type DropdownProps = {
+  title: string;
+  icon?: JSX.Element;
+  options: OptionElement[]
+}

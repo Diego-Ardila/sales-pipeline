@@ -1,16 +1,7 @@
+import { Customer, TableProps } from '../utils/Types';
 import './Table.css';
-import { Customer } from '../utils/Types';
-import { getCustomers } from '../api/httpRequests';
-import { useLoaderData } from 'react-router-dom';
 
-export async function loader() {
-  const customers = await getCustomers();
-  return customers;
-}
-
-function Table() {
-  const customers: Customer[] = useLoaderData() as Customer[];
-  
+function Table({customers}: TableProps) {  
   return (
       <table className="custom-table">
         <thead>
@@ -22,9 +13,9 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {customers.map((val: Customer, key: number) => {
+          {customers.length ? customers.map((val: Customer, key: number) => {
             return (
-              <tr key={key}>
+              <tr key={key} className='users-rows'>
                 <td className='customer-col'>
                   <div className='user-cell'>
                     <img src={val.image} className="user-img" alt="User image" />
@@ -38,7 +29,13 @@ function Table() {
                 <td className='birthdate-col'>{val.birthdate}</td>
               </tr>
             )
-          })}
+          }): (
+            <tr>
+              <td className='no-results-row' align="center" colSpan={4}>
+                No elements to show
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
   );

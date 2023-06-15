@@ -16,7 +16,7 @@
 .custom-table th,
 .custom-table td {
   padding: 10px 13px;
-  max-width: 0;
+  max-width: 30%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -40,14 +40,22 @@
   font-weight: bold;
 }
 
-.user-cell:hover {
+.custom-table tbody .users-rows:hover {
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: var(--secondary-color);
+}
+
+.custom-table tbody .users-rows:hover .user-cell {
+  text-decoration: underline;
 }
 
 .user-cell .user-img {
   height: 30px;
   width: 30px;
+}
+
+.no-results-row {
+  padding: 40px !important;
 }
 
 @media (max-width: 900px) {
@@ -63,8 +71,12 @@
 }
 
 @media (max-width: 680px) {
+  .custom-table th,
+  .custom-table td {
+    max-width: 0;
+  }
   .customer-col {
-    width: 55%
+    width: 55%;
   }
 
   .birthdate-col,

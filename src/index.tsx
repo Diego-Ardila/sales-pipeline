@@ -8,9 +8,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from './components/ErrorPage';
-import Customers from './pages/Customers';
+import Customers,  { loader as customersLoader } from './pages/Customers';
 import Customer from './pages/Customer';
-import { loader as customersLoader } from './components/Table';
 
 const router = createBrowserRouter([
   {

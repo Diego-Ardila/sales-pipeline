@@ -1,4 +1,4 @@
-import { Customer, PublicValidationsResponse, ValidationResponse } from '../utils/Types';
+import { Customer, PublicValidationsResponse, Status, ValidationResponse } from '../utils/Types';
 import { api as validationApi } from '../utils/MockValidationsServer';
 import { api } from '../utils/MockServer';
 
@@ -28,14 +28,21 @@ export async function publicValidation(data: Customer): Promise<PublicValidation
       isRegistryApproved: nationalRegistryResponse.data.approved
     };
   } catch (error) {
-    console.error(error)
     throw error;
   }
 }
 
-export async function getCustomers(): Promise<Customer[]> {
+export async function getCustomers(status?: Status): Promise<Customer[]> {
   try {
-    const response = await api.get('/api/customers');    
+    if(!status) {
+      const response = await api.get('/api/customers');    
+      return response.data.leads;
+    } 
+    const response = await api.get('/api/customers', {
+      params: {
+        status
+      }
+    });    
     return response.data.leads;
   } catch (error) {
     throw error;
