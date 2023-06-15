@@ -64,8 +64,7 @@
 }
 
 .dropdown ul li a:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: #f3f3f3;
 }
 
 .dropdown ul::before {

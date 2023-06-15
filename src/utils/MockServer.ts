@@ -25,6 +25,6 @@ mock.onGet('/api/customers').reply((config) => {
   if(!config.params) {
     return [200, { customers }]
   }
-  const filteredData = customers.filter(customer => config.params.status.includes(customer.status));
+  const filteredData = customers.filter(customer => config.params.stage.includes(customer.stage));
   return [200, {customers: filteredData}]
 })

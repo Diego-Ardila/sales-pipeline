@@ -1,4 +1,6 @@
-export type Status = "Sales Qualified Lead" | "Prospect"
+export type Status = "Active" | "Rejected"
+
+export type Stage = "Lead" | "Prospect" | "Negotiation" | "Contract"
 
 export type Customer = {
   id: number;
@@ -8,6 +10,7 @@ export type Customer = {
   nationalId: number | string;
   birthdate: string;
   status: Status;
+  stage: Stage;
   image: string
 }
 
@@ -31,7 +34,7 @@ export type ValidationResponse = {
 }
 
 export type OptionElement = {
-  name: Status;
+  name: Stage;
   action: () => void
 }
 
@@ -48,6 +51,11 @@ export type CheckboxProps = {
 export type DropdownProps = {
   title: string;
   icon?: JSX.Element;
-  options: OptionElement[],
-  filter: Status[]
+  options: OptionElement[];
+  filter: Stage[]
+}
+
+export type BagdeProps = {
+  text: string;
+  variant: 'success' | 'danger'
 }

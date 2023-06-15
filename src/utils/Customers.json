@@ -6,7 +6,8 @@
     "email": "johndoe@example.com",
     "nationalId": "1234567890",
     "birthdate": "1990-05-15",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/23.jpg"
   },
   {
@@ -16,7 +17,8 @@
     "email": "janesmith@example.com",
     "nationalId": "0987654321",
     "birthdate": "1985-10-20",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/15.jpg"
   },
   {
@@ -26,7 +28,8 @@
     "email": "michaeljohnson@example.com",
     "nationalId": "4567890123",
     "birthdate": "1992-07-01",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/22.jpg"
   },
   {
@@ -36,7 +39,8 @@
     "email": "emilywilliams@example.com",
     "nationalId": "9876543210",
     "birthdate": "1993-02-18",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/22.jpg"
   },
   {
@@ -46,7 +50,8 @@
     "email": "davidbrown@example.com",
     "nationalId": "5432109876",
     "birthdate": "1991-09-05",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/20.jpg"
   },
   {
@@ -56,7 +61,8 @@
     "email": "oliviataylor@example.com",
     "nationalId": "1357924680",
     "birthdate": "1988-12-10",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/36.jpg"
   },
   {
@@ -66,7 +72,8 @@
     "email": "danielmiller@example.com",
     "nationalId": "4680135792",
     "birthdate": "1994-06-28",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/19.jpg"
   },
   {
@@ -76,7 +83,8 @@
     "email": "sophiaanderson@example.com",
     "nationalId": "0246813579",
     "birthdate": "1989-04-22",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/56.jpg"
   },
   {
@@ -86,7 +94,8 @@
     "email": "ethanwalker@example.com",
     "nationalId": "7031598642",
     "birthdate": "1995-11-07",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/24.jpg"
   },
   {
@@ -96,7 +105,8 @@
     "email": "avalewis@example.com",
     "nationalId": "7913579024",
     "birthdate": "1990-08-12",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/16.jpg"
   },
   {
@@ -106,7 +116,8 @@
     "email": "williamharris@example.com",
     "nationalId": "3579024681",
     "birthdate": "1993-03-25",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/18.jpg"
   },
   {
@@ -116,7 +127,8 @@
     "email": "miaclark@example.com",
     "nationalId": "1598642073",
     "birthdate": "1992-01-14",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/34.jpg"
   },
   {
@@ -126,7 +138,8 @@
     "email": "jamesyoung@example.com",
     "nationalId": "6842079351",
     "birthdate": "1987-06-08",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/17.jpg"
   },
   {
@@ -136,7 +149,8 @@
     "email": "charlotteking@example.com",
     "nationalId": "2079351684",
     "birthdate": "1991-12-29",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/27.jpg"
   },
   {
@@ -146,7 +160,8 @@
     "email": "benjaminlee@example.com",
     "nationalId": "9351684207",
     "birthdate": "1994-09-16",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/16.jpg"
   },
   {
@@ -156,7 +171,8 @@
     "email": "ameliabaker@example.com",
     "nationalId": "6207935140",
     "birthdate": "1989-07-23",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/6.jpg"
   },
   {
@@ -166,7 +182,8 @@
     "email": "henrygreen@example.com",
     "nationalId": "9514079362",
     "birthdate": "1993-04-19",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/15.jpg"
   },
   {
@@ -176,7 +193,8 @@
     "email": "sofiahall@example.com",
     "nationalId": "4079362518",
     "birthdate": "1986-11-02",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/female/32.jpg"
   },
   {
@@ -186,7 +204,8 @@
     "email": "josephadams@example.com",
     "nationalId": "9362518407",
     "birthdate": "1990-10-07",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/25.jpg"
   },
   {
@@ -196,7 +215,8 @@
     "email": "harperturner@example.com",
     "nationalId": "2518407936",
     "birthdate": "1988-03-12",
-    "status": "Sales Qualified Lead",
+    "status": "Active",
+    "stage": "Lead",
     "image": "https://xsgames.co/randomusers/assets/avatars/male/26.jpg"
   }
 ]

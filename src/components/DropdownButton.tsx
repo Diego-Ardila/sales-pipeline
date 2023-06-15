@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { DropdownProps, OptionElement, Status } from '../utils/Types';
+import { useRef } from 'react';
+import { DropdownProps, OptionElement } from '../utils/Types';
 import './DropdownButton.css';
 import Checkbox from './Checkbox';
 
@@ -11,7 +11,7 @@ function DropdownButton({title, icon, options, filter}: DropdownProps) {
     if(element) {
       setTimeout(() => {
         element.removeAttribute("open")
-      }, 1000);
+      }, 600);
     }
   }
 

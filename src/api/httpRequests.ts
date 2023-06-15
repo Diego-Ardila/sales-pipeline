@@ -1,4 +1,4 @@
-import { Customer, PublicValidationsResponse, Status, ValidationResponse } from '../utils/Types';
+import { Customer, PublicValidationsResponse, Stage, ValidationResponse } from '../utils/Types';
 import { api as validationApi } from '../utils/MockValidationsServer';
 import { api } from '../utils/MockServer';
 
@@ -32,15 +32,15 @@ export async function publicValidation(data: Customer): Promise<PublicValidation
   }
 }
 
-export async function getCustomers(status: Status[]): Promise<Customer[]> {
+export async function getCustomers(stage: Stage[]): Promise<Customer[]> {
   try {
-    if(!status.length) {
+    if(!stage.length) {
       const response = await api.get('/api/customers');    
       return response.data.customers;
     } 
     const response = await api.get('/api/customers', {
       params: {
-        status
+        stage
       }
     });  
     return response.data.customers;

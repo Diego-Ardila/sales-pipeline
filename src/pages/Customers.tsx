@@ -1,7 +1,7 @@
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import DropdownButton from '../components/DropdownButton';
 import Table from '../components/Table';
-import { Customer, OptionElement, Status } from '../utils/Types';
+import { Customer, OptionElement, Stage } from '../utils/Types';
 import { getCustomers } from '../api/httpRequests';
 import { useLoaderData } from 'react-router-dom';
 import { FiFilter } from "react-icons/fi";
@@ -12,13 +12,13 @@ export async function loader() {
   return customers;
 }
 
-function actionGenerator(status: Status, setFilter: Dispatch<SetStateAction<Status[]>>): () => void {
+function actionGenerator(stage: Stage, setFilter: Dispatch<SetStateAction<Stage[]>>): () => void {
   return () => {
     setFilter(prev => {
-      if(prev.includes(status)) {
-        return prev.filter(prevStatus => prevStatus !== status);
+      if(prev.includes(stage)) {
+        return prev.filter(prevStage => prevStage !== stage);
       }
-      return [...prev, status]
+      return [...prev, stage]
     });
   }
 }
@@ -26,7 +26,7 @@ function actionGenerator(status: Status, setFilter: Dispatch<SetStateAction<Stat
 function Customers() {
   const dbCustomers: Customer[] = useLoaderData() as Customer[];
   const[customers, setCustomers] = useState<Customer[]>(dbCustomers);
-  const[filter, setFilter] = useState<Status[]>([]);
+  const[filter, setFilter] = useState<Stage[]>([]);
 
   useEffect(() => {    
     const fetchData = async () => {
@@ -38,8 +38,10 @@ function Customers() {
   }, [filter])
 
   const options: OptionElement[] = [
-    {name: "Sales Qualified Lead", action: actionGenerator("Sales Qualified Lead", setFilter)},
-    {name: "Prospect", action: actionGenerator("Prospect", setFilter)}
+    {name: "Lead", action: actionGenerator("Lead", setFilter)},
+    {name: "Prospect", action: actionGenerator("Prospect", setFilter)},
+    {name: "Negotiation", action: actionGenerator("Negotiation", setFilter)},
+    {name: "Contract", action: actionGenerator("Contract", setFilter)}
   ]
 
   return (

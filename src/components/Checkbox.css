@@ -42,7 +42,7 @@ label:hover {
   --b: var(--border-hover);
 }
 .checkbox input:checked {
-  --b: var(--border-active);
+  --b: var(--primary-color);
 }
 .checkbox svg {
   pointer-events: none;
@@ -50,7 +50,7 @@ label:hover {
   stroke-width: 2px;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: var(--stroke, var(--border-active));
+  stroke: var(--stroke, var(--primary-color));
   position: absolute;
   top: 0;
   left: 0;
