@@ -32,9 +32,9 @@ export async function publicValidation(data: Customer): Promise<PublicValidation
   }
 }
 
-export async function getCustomers(status?: Status): Promise<Customer[]> {
+export async function getCustomers(status: Status[]): Promise<Customer[]> {
   try {
-    if(!status) {
+    if(!status.length || status.length === 2) {
       const response = await api.get('/api/customers');    
       return response.data.leads;
     } 
@@ -42,7 +42,7 @@ export async function getCustomers(status?: Status): Promise<Customer[]> {
       params: {
         status
       }
-    });    
+    });  
     return response.data.leads;
   } catch (error) {
     throw error;

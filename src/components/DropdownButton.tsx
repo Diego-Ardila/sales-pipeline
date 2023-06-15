@@ -1,13 +1,18 @@
-import { useRef } from 'react';
-import { DropdownProps, OptionElement } from '../utils/Types';
+import { useRef, useState } from 'react';
+import { DropdownProps, OptionElement, Status } from '../utils/Types';
 import './DropdownButton.css';
+import Checkbox from './Checkbox';
 
-function DropdownButton({title, icon, options}: DropdownProps) {
+function DropdownButton({title, icon, options, filter}: DropdownProps) {
   const dropdownRef = useRef<HTMLDetailsElement>(null);
   const onClick = (option: OptionElement) => {
-    const element = dropdownRef.current;
-    if(element) element.removeAttribute("open")
     option.action();
+    const element = dropdownRef.current;
+    if(element) {
+      setTimeout(() => {
+        element.removeAttribute("open")
+      }, 1000);
+    }
   }
 
   return (
@@ -22,8 +27,12 @@ function DropdownButton({title, icon, options}: DropdownProps) {
       <ul>
         {options.map(option => (
           <li key={option.name}>
-            <a onClick={() => { onClick(option) }}>
-              {option.name}
+            <a>
+              <Checkbox
+                isChecked={filter.includes(option.name)}
+                option={option}
+                onClick={onClick}
+              />
             </a>
           </li>
         ))}

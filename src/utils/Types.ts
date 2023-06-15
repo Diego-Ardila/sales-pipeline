@@ -31,7 +31,7 @@ export type ValidationResponse = {
 }
 
 export type OptionElement = {
-  name: string;
+  name: Status;
   action: () => void
 }
 
@@ -39,8 +39,15 @@ export type TableProps = {
   customers: Customer[]
 }
 
+export type CheckboxProps = {
+  isChecked: boolean,
+  option: OptionElement,
+  onClick: (option: OptionElement) => void
+}
+
 export type DropdownProps = {
   title: string;
   icon?: JSX.Element;
-  options: OptionElement[]
+  options: OptionElement[],
+  filter: Status[]
 }
