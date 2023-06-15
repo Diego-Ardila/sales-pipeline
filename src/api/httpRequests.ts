@@ -34,16 +34,16 @@ export async function publicValidation(data: Customer): Promise<PublicValidation
 
 export async function getCustomers(status: Status[]): Promise<Customer[]> {
   try {
-    if(!status.length || status.length === 2) {
+    if(!status.length) {
       const response = await api.get('/api/customers');    
-      return response.data.leads;
+      return response.data.customers;
     } 
     const response = await api.get('/api/customers', {
       params: {
         status
       }
     });  
-    return response.data.leads;
+    return response.data.customers;
   } catch (error) {
     throw error;
   }

@@ -1,6 +1,17 @@
 import axios, { AxiosInstance } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import LeadsDb from './Customers.json';
+import CustomersJSON from './Customers.json';
+import { Customer } from './Types';
+
+function customersDb():Customer[] {
+  let localStorageCustomers:string |  null = localStorage.getItem('customers');
+  
+  if(!localStorageCustomers) {
+    localStorage.setItem('customers', JSON.stringify(CustomersJSON));
+    return CustomersJSON as Customer[];
+  }
+  return JSON.parse(localStorageCustomers);
+}
 
 export const api: AxiosInstance = axios.create({
   paramsSerializer: {
@@ -9,10 +20,11 @@ export const api: AxiosInstance = axios.create({
 });
 const mock: MockAdapter = new MockAdapter(api, { delayResponse: 200 });
 
-mock.onGet('/api/customers').reply((config) => {  
+mock.onGet('/api/customers').reply((config) => {   
+  const customers = customersDb();
   if(!config.params) {
-    return [200, { leads: LeadsDb }]
+    return [200, { customers }]
   }
-  const filteredData = LeadsDb.filter(lead => config.params.status.includes(lead.status));
-  return [200, {leads: filteredData}]
+  const filteredData = customers.filter(customer => config.params.status.includes(customer.status));
+  return [200, {customers: filteredData}]
 })
