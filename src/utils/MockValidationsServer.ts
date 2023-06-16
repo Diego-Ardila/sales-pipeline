@@ -41,6 +41,7 @@ mock.onGet('/api/judicial-records').reply((config) => {
   }
 });
 
-mock.onPost('/api/prospect-qualification').reply(200, {
-  score: 80,
+mock.onGet('/api/prospect-qualification').reply(() => {
+  const number = Math.floor(Math.random() * 100);
+  return [200, { score: number }]
 });

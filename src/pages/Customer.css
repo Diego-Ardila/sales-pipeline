@@ -65,6 +65,35 @@
 .detail--assignee {
   grid-area: assignee;
 }
+.lead-validation {
+  display: flex;
+  flex-direction: column;
+  grid-area: leadValidation;
+  justify-content: space-between;
+  justify-self: end;
+  align-self: stretch;
+}
+.validations-status {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.validations-status li {
+  display: flex;
+  gap: 5px;
+}
+.validations-status li.pending {
+  color: gray;
+}
+.validations-status li.approved {
+  color: green;
+}
+.validations-status li.rejected {
+  color: red;
+}
 .validate-btn {
   grid-area: validateBtn;
   justify-self: end;
@@ -77,8 +106,8 @@
   row-gap: 20px;
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-areas: 
-  "nationalId stage ."
-  "status assignee validateBtn";
+  "nationalId stage leadValidation"
+  "status assignee leadValidation";
 }
 
 .detail--body h4 {
@@ -118,16 +147,14 @@
   }
   .detail--body {
     padding: 15px;
-    display: grid;
-    row-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    "nationalId  ."
-    "stage ."
-    "status ."
-    "assignee validateBtn";
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
   .customer--header .badge {
     display: none;
+  }
+  .validations-status {
+    margin-left: auto;
   }
 }

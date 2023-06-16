@@ -1,6 +1,8 @@
-export type Status = "Active" | "Rejected"
+export type Status = "Active" | "Rejected";
 
-export type Stage = "Lead" | "Prospect" | "Negotiation" | "Contract"
+export type Stage = "Lead" | "Prospect" | "Negotiation" | "Contract";
+
+export type ValidationStates = "loading" | "pending" | "approved" | "rejected"
 
 export type Step = {
   text: string;

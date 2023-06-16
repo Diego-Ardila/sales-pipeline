@@ -47,12 +47,15 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
 button:focus {
   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
   outline: 0;
 }
-
 button:hover {
   cursor: pointer;
+}
+button[disabled] {
+  background: linear-gradient(180deg, #cadfff 0%, #7686a5 100%);
+  color: white;
+  cursor: not-allowed;
 }

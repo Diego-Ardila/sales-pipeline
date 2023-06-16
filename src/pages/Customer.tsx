@@ -1,11 +1,12 @@
-import { getCustomer } from '../api/httpRequests';
+import { getCustomer, internalValidation, publicValidation } from '../api/httpRequests';
 import { ActionFunctionArgs, ParamParseKey, Params, useLoaderData } from 'react-router-dom';
-import { Customer as CustomerType, Step } from '../utils/Types';
+import { Customer as CustomerType, Step, ValidationStates } from '../utils/Types';
 import Badge from '../components/Badge';
-import { MdOutlineEmail } from "react-icons/md";
+import { MdCancel, MdCheckCircle, MdOutlineEmail, MdPending } from "react-icons/md";
 import './Customer.css';
 import Multistep from '../components/Multistep';
-import { useCallback } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
+import Loader from '../components/Loader';
 
 const PathNames = {
   todoDetail: '/customer/:customerId',
@@ -16,7 +17,7 @@ interface Args extends ActionFunctionArgs {
 }
 
 export async function loader({ params }: Args) {
-  if(!params.customerId) {
+  if (!params.customerId) {
     return {};
   }
   const customer = await getCustomer(params.customerId);
@@ -24,26 +25,73 @@ export async function loader({ params }: Args) {
 }
 
 function Customer() {
-  const customer: CustomerType = useLoaderData() as CustomerType;
-  const steps:() => Step[] = useCallback(() => {
+  const customerDb: CustomerType = useLoaderData() as CustomerType;
+  const [customer, setCustomer] = useState<CustomerType>(customerDb);
+  const [nationalRegistryState, setNationalRegistryState] = useState<ValidationStates>('pending');
+  const [judicialRecordsState, setJudicialRecordsState] = useState<ValidationStates>('pending');
+  const [internalValidationState, setInternalValidationState] = useState<ValidationStates>('pending');
+
+  const steps: () => Step[] = useCallback(() => {
     const stepsTemplate: Step[] = [
-      {text: 'Lead', state: 'pending'},
-      {text: 'Prospect', state: 'pending'},
-      {text: 'Negotiation', state: 'pending'},
-      {text: 'Contract', state: 'pending'}
+      { text: 'Lead', state: 'pending' },
+      { text: 'Prospect', state: 'pending' },
+      { text: 'Negotiation', state: 'pending' },
+      { text: 'Contract', state: 'pending' }
     ];
     let isActiveFound: boolean = false;
 
     return stepsTemplate.map((step: Step) => {
-      if(isActiveFound) {
+      if (isActiveFound) {
         return step;
-      } else if(step.text === customer.stage) {
+      } else if (step.text === customer.stage) {
         isActiveFound = true;
-        return {...step, state: 'active'}
+        return { ...step, state: 'active' }
       }
-      return {...step, state: 'passed'}
+      return { ...step, state: 'passed' }
     })
   }, [customer]);
+
+  const isValidating = (): boolean => {
+    return nationalRegistryState === 'loading' ||
+      judicialRecordsState === 'loading' ||
+      internalValidationState === 'loading'
+  }
+
+  const handleClick = async () => {
+    setJudicialRecordsState("loading");
+    setNationalRegistryState("loading");
+    setInternalValidationState("pending");
+    const { isJudicialApproved, isRegistryApproved } = await publicValidation(customer);
+    if (!isJudicialApproved || !isRegistryApproved) {
+      setJudicialRecordsState(!isJudicialApproved ? "rejected" : "approved");
+      setNationalRegistryState(!isRegistryApproved ? "rejected" : "approved");
+    } else {
+      setJudicialRecordsState("approved");
+      setNationalRegistryState("approved");
+      setInternalValidationState("loading");
+      const isValid: boolean = await internalValidation(customer);
+      if (isValid) {
+        setInternalValidationState("approved");
+      } else {
+        setInternalValidationState("rejected");
+      }
+    }
+    const customerUpdated = await getCustomer(customer.nationalId);
+    setCustomer(customerUpdated);
+  }
+
+  const iconMapper: (state: ValidationStates) => JSX.Element = (state) => {
+    switch (state) {
+      case "approved":
+        return <MdCheckCircle />;
+      case "loading":
+        return <Loader />;
+      case "rejected":
+        return <MdCancel />;
+      default:
+        return <MdPending />;
+    }
+  };
 
   return (
     <div className="customer">
@@ -64,7 +112,7 @@ function Customer() {
         </a>
       </header>
       <section className="customer--body">
-        <Multistep steps={steps()}/>
+        <Multistep steps={steps()} />
         <div className="customer--detail">
           <div className="detail--header">
             Detail
@@ -92,9 +140,28 @@ function Customer() {
                 <span>User name</span>
               </div>
             </div>
-            <button className="validate-btn">
-              Validate customer
-            </button>
+            {customer.stage === 'Lead' ? (
+              <div className="lead-validation">
+                <ul className="validations-status">
+                  <li className={nationalRegistryState}>
+                    {iconMapper(nationalRegistryState)}
+                    National registry validation
+                  </li>
+                  <li className={judicialRecordsState}>
+                    {iconMapper(judicialRecordsState)}
+                    Judicial records validation
+                  </li>
+                  <li className={internalValidationState}>
+                    {iconMapper(internalValidationState)}
+                    Internal prospect qualification
+                  </li>
+                </ul>
+                <button disabled={isValidating()} onClick={handleClick} className="validate-btn">
+                  Validate customer
+                  {isValidating() ? <Loader color="white" /> : null}
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
