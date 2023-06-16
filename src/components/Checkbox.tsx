@@ -2,9 +2,10 @@ import { ChangeEvent } from 'react';
 import { CheckboxProps } from '../utils/Types';
 import './Checkbox.css';
 
-function Checkbox({isChecked, option, onClick}: CheckboxProps) {
+function Checkbox({isChecked, option}: CheckboxProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onClick(option)
+    e.stopPropagation();
+    option.action()
   }
   
   return (
@@ -15,7 +16,7 @@ function Checkbox({isChecked, option, onClick}: CheckboxProps) {
           <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
         </svg>
       </label>
-      <label htmlFor={option.name}>
+      <label className='checkbox-label' htmlFor={option.name}>
         {option.name}
       </label>
     </div>

@@ -25,6 +25,20 @@ mock.onGet('/api/customers').reply((config) => {
   if(!config.params) {
     return [200, { customers }]
   }
-  const filteredData = customers.filter(customer => config.params.stage.includes(customer.stage));
+  const filteredData: Customer[] = customers.filter(customer => config.params.stage.includes(customer.stage));
   return [200, {customers: filteredData}]
+})
+
+mock.onGet('/api/customer').reply((config) => {   
+  const customers = customersDb();
+  if(!config.params) {
+    return [400]
+  }
+  const customer: Customer | undefined = customers.find(
+    customer => config.params.customerId === customer.nationalId
+  );
+  if(!customer) {
+    return [404]
+  }
+  return [200, {customer}]
 })

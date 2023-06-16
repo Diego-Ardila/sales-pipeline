@@ -71,6 +71,9 @@ label:hover {
 .checkbox.bounce svg {
   --scale: 0;
 }
+.checkbox-label {
+  width: 100%;
+}
 
 @-webkit-keyframes bounce {
   50% {

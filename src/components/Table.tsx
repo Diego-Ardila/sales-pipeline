@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Customer, TableProps } from '../utils/Types';
 import Badge from './Badge';
 import './Table.css';
 
-function Table({customers}: TableProps) {  
+function Table({customers}: TableProps) {
+  const navigate = useNavigate();
   return (
       <table className="custom-table">
         <thead>
@@ -17,7 +19,7 @@ function Table({customers}: TableProps) {
         <tbody>
           {customers.length ? customers.map((val: Customer, key: number) => {
             return (
-              <tr key={key} className='users-rows'>
+              <tr key={key} className='users-rows' onClick={() => {navigate(`customer/${val.nationalId}`)}}>
                 <td className='customer-col'>
                   <div className='user-cell'>
                     <img src={val.image} className="user-img" alt="User image" />

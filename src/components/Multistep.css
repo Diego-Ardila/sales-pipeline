@@ -1,0 +1,74 @@
+.multistep {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+  --passed: #3c69f06c;
+  --pending: #d1d1d1;
+}
+
+.multistep .step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 20px;
+  background-color: var(--primary-color);
+  position: relative;
+  height: 40px;
+  width: 16%;
+}
+
+.multistep .step::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid var(--primary-color);
+  z-index: 2;
+}
+
+.multistep .step::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid white;
+  z-index: 1;
+}
+
+.multistep .step--passed {
+  background-color: var(--passed);
+}
+
+.multistep .step--passed::after {
+  border-left: 20px solid var(--passed);
+}
+
+.multistep .step--pending {
+  color: black;
+  background-color: var(--pending);
+}
+
+.multistep .step--pending::after {
+  border-left: 20px solid var(--pending);
+}
+
+@media (max-width: 700px) {
+  .multistep {
+    transform: translateX(-10px);
+  }
+  .multistep .step {
+    font-size: 10px;
+    width: fit-content;
+    padding: 0 5px 0 25px;
+  }
+}

@@ -9,7 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorPage from './components/ErrorPage';
 import Customers,  { loader as customersLoader } from './pages/Customers';
-import Customer from './pages/Customer';
+import Customer, { loader as customerLoader } from './pages/Customer';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,8 @@ const router = createBrowserRouter([
       },
       {
         path: "customer/:customerId",
-        element: <Customer />
+        element: <Customer />,
+        loader: customerLoader
       }
     ]
   },

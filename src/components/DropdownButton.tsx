@@ -1,22 +1,11 @@
-import { useRef } from 'react';
-import { DropdownProps, OptionElement } from '../utils/Types';
+import { DropdownProps } from '../utils/Types';
 import './DropdownButton.css';
 import Checkbox from './Checkbox';
 
 function DropdownButton({title, icon, options, filter}: DropdownProps) {
-  const dropdownRef = useRef<HTMLDetailsElement>(null);
-  const onClick = (option: OptionElement) => {
-    option.action();
-    const element = dropdownRef.current;
-    if(element) {
-      setTimeout(() => {
-        element.removeAttribute("open")
-      }, 600);
-    }
-  }
 
   return (
-    <details ref={dropdownRef} className="dropdown">
+    <details className="dropdown">
       <summary role="button">
         <a className="button">
           {icon}
@@ -31,7 +20,6 @@ function DropdownButton({title, icon, options, filter}: DropdownProps) {
               <Checkbox
                 isChecked={filter.includes(option.name)}
                 option={option}
-                onClick={onClick}
               />
             </a>
           </li>

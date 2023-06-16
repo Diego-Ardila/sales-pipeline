@@ -1,0 +1,133 @@
+.customer {
+  width: calc(100% - 60px);
+  padding: 0 30px;
+  background-color: var(--grayed-background);
+  border-radius: 20px 20px 0 0;
+  min-height: 100%;
+}
+
+.customer--header {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customer--info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.customer--header img {
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+}
+
+.customer--header a {
+  text-decoration: none !important;
+}
+
+.customer--body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: calc(100% - 60px);
+  padding: 30px;
+}
+
+.customer--detail {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+}
+
+.detail--header {
+  border-bottom: 1px solid var(--card-border);
+  padding: 15px;
+  font-weight: bold;
+}
+
+.detail--national-id {
+  grid-area: nationalId;
+}
+.detail--stage {
+  grid-area: stage;
+}
+.detail--status {
+  grid-area: status;
+}
+.detail--assignee {
+  grid-area: assignee;
+}
+.validate-btn {
+  grid-area: validateBtn;
+  justify-self: end;
+  align-self: end;
+}
+
+.detail--body {
+  padding: 15px;
+  display: grid;
+  row-gap: 20px;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-areas: 
+  "nationalId stage ."
+  "status assignee validateBtn";
+}
+
+.detail--body h4 {
+  font-size: 14px;
+  font-weight: bold;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.detail--body span {
+  font-size: 14px;
+}
+
+.detail--assignee .user-img {
+  width: 25px;
+  height: 25px;
+}
+.detail--assignee div {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .customer {
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+  }
+  .customer--body {
+    width: 100%;
+    padding: 0;
+  }
+  .customer--header img {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+  }
+  .detail--body {
+    padding: 15px;
+    display: grid;
+    row-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "nationalId  ."
+    "stage ."
+    "status ."
+    "assignee validateBtn";
+  }
+  .customer--header .badge {
+    display: none;
+  }
+}

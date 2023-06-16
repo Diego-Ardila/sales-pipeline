@@ -48,3 +48,16 @@ export async function getCustomers(stage: Stage[]): Promise<Customer[]> {
     throw error;
   }
 }
+
+export async function getCustomer(customerId: string | number): Promise<Customer> {
+  try {
+    const response = await api.get('/api/customer', {
+      params: {
+        customerId
+      }
+    });  
+    return response.data.customer;
+  } catch (error) {
+    throw error;
+  }
+}

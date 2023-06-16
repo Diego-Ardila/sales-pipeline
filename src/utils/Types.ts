@@ -2,6 +2,11 @@ export type Status = "Active" | "Rejected"
 
 export type Stage = "Lead" | "Prospect" | "Negotiation" | "Contract"
 
+export type Step = {
+  text: string;
+  state: "active" | "passed" | "pending"
+}
+
 export type Customer = {
   id: number;
   firstName: string;
@@ -38,6 +43,8 @@ export type OptionElement = {
   action: () => void
 }
 
+//Props types
+
 export type TableProps = {
   customers: Customer[]
 }
@@ -45,7 +52,6 @@ export type TableProps = {
 export type CheckboxProps = {
   isChecked: boolean,
   option: OptionElement,
-  onClick: (option: OptionElement) => void
 }
 
 export type DropdownProps = {
@@ -58,4 +64,8 @@ export type DropdownProps = {
 export type BagdeProps = {
   text: string;
   variant: 'success' | 'danger'
+}
+
+export type MultistepProps = {
+  steps: Step[];
 }
