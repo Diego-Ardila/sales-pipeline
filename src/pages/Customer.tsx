@@ -1,12 +1,12 @@
+import { useCallback, useState } from 'react';
 import { getCustomer, internalValidation, publicValidation } from '../api/httpRequests';
 import { ActionFunctionArgs, ParamParseKey, Params, useLoaderData } from 'react-router-dom';
 import { Customer as CustomerType, Step, ValidationStates } from '../utils/Types';
 import Badge from '../components/Badge';
 import { MdCancel, MdCheckCircle, MdOutlineEmail, MdPending } from "react-icons/md";
-import './Customer.css';
 import Multistep from '../components/Multistep';
-import { ReactElement, useCallback, useState } from 'react';
 import Loader from '../components/Loader';
+import './Customer.css';
 
 const PathNames = {
   todoDetail: '/customer/:customerId',

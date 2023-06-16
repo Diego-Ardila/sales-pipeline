@@ -5,7 +5,7 @@ function Multistep({ steps }: MultistepProps) {
   return (
     <div className="multistep">
       {steps.map(step => (
-        <div className={`step step--${step.state}`}>
+        <div key={step.text} className={`step step--${step.state}`}>
           {step.text}
         </div>
       ))}
