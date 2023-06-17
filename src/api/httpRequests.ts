@@ -69,7 +69,6 @@ export async function internalValidation(data: Customer): Promise<boolean> {
       }
     });
     const isValid = response.data.score >= 60;
-    console.log(response.data);
     
     if(!isValid) {
       setCustomerProperties({status: 'Rejected'}, data);

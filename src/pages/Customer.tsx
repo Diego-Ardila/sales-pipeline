@@ -9,11 +9,11 @@ import Loader from '../components/Loader';
 import './Customer.css';
 
 const PathNames = {
-  todoDetail: '/customer/:customerId',
-} as const;
+  customer: '/customer/:customerId',
+};
 
 interface Args extends ActionFunctionArgs {
-  params: Params<ParamParseKey<typeof PathNames.todoDetail>>;
+  params: Params<ParamParseKey<typeof PathNames.customer>>;
 }
 
 export async function loader({ params }: Args) {
@@ -131,7 +131,7 @@ function Customer() {
             </div>
             <div className="detail--stage">
               <h4>Stage</h4>
-              <span>{customer.stage}</span>
+              <span data-testId="stage-metadata">{customer.stage}</span>
             </div>
             <div className="detail--assignee">
               <h4>Assignee</h4>
