@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 import { getCustomer, internalValidation, publicValidation } from '../api/httpRequests';
-import { ActionFunctionArgs, ParamParseKey, Params, useLoaderData } from 'react-router-dom';
+import { ActionFunctionArgs, ParamParseKey, Params, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { Customer as CustomerType, Step, ValidationStates } from '../utils/Types';
 import Badge from '../components/Badge';
 import { MdCancel, MdCheckCircle, MdOutlineEmail, MdPending } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 import Multistep from '../components/Multistep';
 import Loader from '../components/Loader';
 import './Customer.css';
@@ -25,6 +26,9 @@ export async function loader({ params }: Args) {
 }
 
 function Customer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const customerDb: CustomerType = useLoaderData() as CustomerType;
   const [customer, setCustomer] = useState<CustomerType>(customerDb);
   const [nationalRegistryState, setNationalRegistryState] = useState<ValidationStates>('pending');
@@ -93,8 +97,16 @@ function Customer() {
     }
   };
 
+  const handleNavigation = () => {
+    navigate('/')
+  }
+
   return (
     <div className="customer">
+      <div className="nav-button" onClick={handleNavigation}>
+        <IoIosArrowBack />
+        Back
+      </div>
       <header className="customer--header">
         <div className="customer--info">
           <img src={customer.image} alt="Customer picture" />
@@ -131,7 +143,7 @@ function Customer() {
             </div>
             <div className="detail--stage">
               <h4>Stage</h4>
-              <span data-testId="stage-metadata">{customer.stage}</span>
+              <span data-testid="stage-metadata">{customer.stage}</span>
             </div>
             <div className="detail--assignee">
               <h4>Assignee</h4>

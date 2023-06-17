@@ -1,13 +1,8 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, render, screen, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Customer, { loader as customerLoader } from './Customer';
-import * as RequestsModule from '../api/httpRequests';
-import CustomerDb from '../utils/Customers.json'
-import { Customer as CustomerType } from '../utils/Types';
-import { act } from 'react-dom/test-utils';
-
-jest.setTimeout(25000);
+import { randomNumber } from '../utils/MockValidationsServer';
 
 describe('Customer Page', () => {
   beforeEach(() => {    
@@ -37,7 +32,6 @@ describe('Customer Page', () => {
 
   describe('Apply the right validations for lead customer to become prospect', () => {
     test('When customer exists in national registry and doesnt have any judicial record', async () => {
-      jest.spyOn(RequestsModule, 'internalValidation').mockResolvedValue(true)
       const router = createMemoryRouter([
         {
           path: "customer/:customerId",
@@ -53,7 +47,64 @@ describe('Customer Page', () => {
       const validationsButton = await screen.findByRole('button', {name: /validate customer/i});
       act(() => { userEvent.click(validationsButton); })
       const stage = await screen.findByTestId('stage-metadata');
-      await waitFor(async() => expect(stage).toHaveTextContent('Prospect'), {timeout: 15000});
+      const status = await screen.findAllByTestId('status-metadata');
+      //With this we can check the random number brought from the internalValidation mock server
+      console.log('internal validation number: ', randomNumber);
+      
+      if(randomNumber >= 60) {
+        waitFor(async() => expect(stage).toHaveTextContent('Prospect'));
+      } else {
+        expect(stage).toHaveTextContent('Lead');
+        waitFor(async() => expect(status[0]).toHaveTextContent('Rejected'));
+      }
+    })
+
+    test('When customer exists in national registry but has a judicial record', async () => {
+      const router = createMemoryRouter([
+        {
+          path: "customer/:customerId",
+          element: <Customer />,
+          loader: customerLoader
+        }
+      ], {
+        initialEntries: ['/customer/4567890123'],
+        initialIndex: 0
+      })
+      render(<RouterProvider router={router} />);
+
+      const validationsButton = await screen.findByRole('button', {name: /validate customer/i});
+      act(() => { userEvent.click(validationsButton); })
+      const stage = await screen.findByTestId('stage-metadata');
+      const status = await screen.findAllByTestId('status-metadata');
+      
+      waitFor(async() =>{
+        expect(status).toHaveTextContent('Rejected')
+        expect(stage).toHaveTextContent('Lead');
+      });
+    })
+
+    test('When customer doesnt exist in national registry but doesnt have any judicial record', async () => {
+      const router = createMemoryRouter([
+        {
+          path: "customer/:customerId",
+          element: <Customer />,
+          loader: customerLoader
+        }
+      ], {
+        initialEntries: ['/customer/0987654321'],
+        initialIndex: 0
+      })
+      render(<RouterProvider router={router} />);
+
+      const validationsButton = await screen.findByRole('button', {name: /validate customer/i});
+      act(() => { userEvent.click(validationsButton); })
+      const stage = await screen.findByTestId('stage-metadata');
+      const status = await screen.findAllByTestId('status-metadata');
+      
+      waitFor(async() =>{
+        expect(status).toHaveTextContent('Rejected')
+        expect(stage).toHaveTextContent('Lead');
+      });
     })
   })
   

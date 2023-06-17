@@ -4,7 +4,7 @@ import './Badge.css';
 
 function Badge({text, variant = 'success'}: BagdeProps) {
   return (
-    <div className={`badge ${variant}`}>
+    <div data-testid="status-metadata" className={`badge ${variant}`}>
       {text}
     </div>
   );

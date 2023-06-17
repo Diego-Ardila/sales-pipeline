@@ -5,7 +5,16 @@
   border-radius: 20px 20px 0 0;
   min-height: 100%;
 }
-
+.customer .nav-button {
+  display: inline-flex;
+  align-items: end;
+  margin-left: -25px;
+  font-size: 16px;
+  color: gray;
+  font-weight: bold;
+  cursor: pointer;
+  height: 25px;
+}
 .customer--header {
   width: 100%;
   padding: 20px 0;
@@ -156,5 +165,8 @@
   }
   .validations-status {
     margin-left: auto;
+  }
+  .customer .nav-button {
+    margin: 0;
   }
 }

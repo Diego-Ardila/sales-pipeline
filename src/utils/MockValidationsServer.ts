@@ -4,8 +4,10 @@ import nationalRegistryData from './NationalRegistry.json';
 import nationalJudicialRecords from './JudicialRecords.json';
 import { Person } from './Types';
 
+export let timeout = process.env.REACT_APP_TIMEOUT || '100';
+
 export const api: AxiosInstance = axios.create();
-const mock: MockAdapter = new MockAdapter(api, { delayResponse: 5000 });
+const mock: MockAdapter = new MockAdapter(api, { delayResponse: parseInt(timeout) });
 
 mock.onGet('/api/national-registry').reply((config) => {
   const { nationalId, firstName, lastName, birthdate }: Person = config.params;
@@ -41,7 +43,8 @@ mock.onGet('/api/judicial-records').reply((config) => {
   }
 });
 
+export const randomNumber = Math.floor(Math.random() * 100);
+
 mock.onGet('/api/prospect-qualification').reply(() => {
-  const number = Math.floor(Math.random() * 100);
-  return [200, { score: number }]
+  return [200, { score: randomNumber }]
 });
