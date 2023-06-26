@@ -44,6 +44,9 @@ As noticed in the above gifs all the fields react to the changes of states accor
 - Improve the error boundaries and error management in each request(create a modal or alert to show them).
 - Add a breadcrumb component
 - Actions to advance in the next steages after Prospect
+- Add Sass css preprocessor
+- Add the sorting and filtering to the query string of the url
+- Add Redux with some requests handler
 
 ## Available Scripts
 
