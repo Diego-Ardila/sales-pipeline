@@ -10,6 +10,10 @@
   box-shadow: rgba(101, 111, 117, 0.2) 0px 8px 32px;
 }
 
+.app-header h2 {
+  color: var(--primary-color);
+}
+
 .App-logo {
   height: 30px;
 }
