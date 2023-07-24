@@ -16,7 +16,7 @@ As the project doesn't have a backend service I decided to mock the data using j
 ## Explanation
 Project where you can simulate a CRM interaction with a sales pipeline, conformed by the `Lead -> Prospect -> Negotiation -> Contract` stages, in which you can run authomatic validations to check if a customer in the Lead stage is eligible to become a Prospect. In the main view we have a List of customers rendered in a custom Table built from scratch using HTML and CSS. Each customer has personal information, that is showed in the columns, and also the Stage(sales pipeline step in which the cutomer is at the moment) and Status(Active or Rejected, to check if a Lead didn't pass the validations). In this main view you can also find a filter button where you can filter according to the stage column:
 
-![sales-pipeline](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/9a572739-8f71-431c-90b9-d7c88623ec28)
+![sales-pipeline](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/a102effa-69d8-46a6-b202-e4de67eafd3e)
 
 Then we have the Customer by id view where you can check the information of one specific customer, selected from the previous Table, and also if the customer is on the Lead stage, run the following authomatic validations:
 
@@ -29,13 +29,13 @@ The first two validations are non-dependent between each other. Therefore, both 
 All of them were mocked using `axios-mock-adapter`, and presented as a list above the validations button trigger, and having different styles and icons according to the state of each of them, in order to give feedback to the user inteeracting with the functionality this way:
 
 - All approved:
-![sales-pipeline-approved](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/2294f087-b685-4a0f-8d12-0f90b4b1147f)
+![sales-pipeline-approved](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/40c762fa-7be4-4d48-9f5a-c60b5a5c044b)
 
 - One of the parallel first rejected:
-![sales-pipeline-judicial-faill](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/3a0cc1a9-4819-4fb5-bebf-5f1c1fbd397b)
+![sales-pipeline-judicial-faill](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/bf2d3aeb-ad06-48ae-ab7b-7a29d9744a31)
 
 - the last one rejected:
-![sales-pipeline-internal-faill](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/001f6eb5-94d7-4607-889f-d5c6026f6ecc)
+![sales-pipeline-internal-faill](https://github.com/Diego-Ardila/sales-pipeline/assets/67027844/9208ae38-7b83-4d54-b714-6085dcd5a6fd)
 
 As noticed in the above gifs all the fields react to the changes of states according to the responses received from the mocked services validations, by executing the customer info request at the end of the validations interaction, so everything is working as an application consuming a REST api service. 
 
